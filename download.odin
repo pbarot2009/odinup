@@ -38,4 +38,3 @@ extract_zip :: proc(archive: string, dest: string) {
 		os.exit(1)
 	}
 }
-

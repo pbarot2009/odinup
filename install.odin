@@ -167,4 +167,3 @@ ols_platform_string :: proc() -> string {
 		}
 	}
 }
-

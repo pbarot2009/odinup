@@ -1,6 +1,6 @@
 # OdinUP: Native Odin Version Manager
 
-OdinUP is a version manager for Odin and Ols written in ON.
+OdinUP is a version manager for Odin and Ols written in Odin.
 
 ## Script Installation
 

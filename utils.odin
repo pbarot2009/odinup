@@ -121,12 +121,7 @@ print_version :: proc() {
 
 		fmt.printf("%s%sodinup%s %sversion unknown%s\n", BOLD, B_CYAN, RESET, B_RED, RESET)
 		fmt.printf("%sA native tool to manage Odin and Ols%s\n", GRAY, RESET)
-		fmt.printf(
-			"%sGitHub: %shttps://github.com/pbarot2009/odinup%s\n",
-			GRAY,
-			B_BLUE,
-			RESET,
-		)
+		fmt.printf("%sGitHub: %shttps://github.com/pbarot2009/odinup%s\n", GRAY, B_BLUE, RESET)
 		return
 	}
 	defer delete(data, context.allocator)
@@ -141,4 +136,3 @@ print_version :: proc() {
 	fmt.printf("%sA native tool to manage Odin and Ols%s\n", GRAY, RESET)
 	fmt.printf("%sGitHub: https://github.com/pbarot2009/odinup%s\n", B_BLUE, RESET)
 }
-

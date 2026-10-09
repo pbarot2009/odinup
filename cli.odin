@@ -254,4 +254,3 @@ print_usage :: proc() {
 	fmt.printf("  %s%-48s%s  %s\n", GRAY, "help, -h", RESET, "Show this help message")
 	fmt.printf("  %s%-48s%s  %s\n", GRAY, "version, -v", RESET, "Print the version information")
 }
-

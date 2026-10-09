@@ -127,4 +127,3 @@ list_remote :: proc(ols: bool) {
 	}
 	fmt.println("\n")
 }
-
