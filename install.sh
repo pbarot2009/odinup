@@ -25,7 +25,7 @@ echo -e "🔎 Detected System: ${CYAN}${OS}-${ARCH}${RESET}"
 
 # 2. Interrogate GitHub API
 echo -e "🌐 Querying GitHub for latest release..."
-REPO_API="https://api.github.com/repos/prathmesh-barot/odinup/releases/latest"
+REPO_API="https://api.github.com/repos/pbarot2009/odinup/releases/latest"
 API_RESPONSE=$(curl -s "$REPO_API")
 
 LATEST_TAG=$(echo "$API_RESPONSE" | grep -m 1 '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')

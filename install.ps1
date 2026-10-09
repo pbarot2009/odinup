@@ -16,7 +16,7 @@ Write-Host "🔎 Detected System: " -NoNewline; Write-Color "windows-$Arch" -Col
 
 # 2. Interrogate GitHub API
 Write-Host "🌐 Querying GitHub for latest release..."
-$ApiUrl = "https://api.github.com/repos/prathmesh-barot/odinup/releases/latest"
+$ApiUrl = "https://api.github.com/repos/pbarot2009/odinup/releases/latest"
 try {
     $Release = Invoke-RestMethod -Uri $ApiUrl -UseBasicParsing
 } catch {
