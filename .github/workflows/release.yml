@@ -4,52 +4,46 @@ on:
   push:
     tags:
       - 'v*'
-  workflow_dispatch: # Allows you to run it manually from the Actions tab to test without tagging!
+  workflow_dispatch:
 
 jobs:
   build:
     name: Build ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false # Prevents the whole pipeline from stopping if 1 target fails
+      fail-fast: false
       matrix:
         include:
-          # --- Linux NATIVE Runners ---
+          # --- Linux Runners ---
           - os: ubuntu-latest
             target: linux_amd64
             name: odinup-linux-amd64
             exe: odinup
             ext: tar.gz
-            
-          - os: ubuntu-24.04-arm # Native ARM runner! No cross-linking needed.
+
+          - os: ubuntu-24.04-arm
             target: linux_arm64
             name: odinup-linux-arm64
             exe: odinup
             ext: tar.gz
-            
-          # --- MacOS NATIVE Runners ---
-          - os: macos-15-intel # Explicitly use Intel runner for AMD64
+
+          # --- macOS Runners ---
+          - os: macos-latest
             target: darwin_amd64
             name: odinup-darwin-amd64
             exe: odinup
             ext: tar.gz
-            
-          - os: macos-latest # 'macos-latest' is natively ARM64 (Apple Silicon M1/M2)
+
+          - os: macos-latest
             target: darwin_arm64
             name: odinup-darwin-arm64
             exe: odinup
             ext: tar.gz
-            
-          # --- Windows Runners ---
+
+          # --- Windows Runner ---
           - os: windows-latest
             target: windows_amd64
             name: odinup-windows-amd64
-            exe: odinup.exe
-            ext: zip
-            
-          - os: windows-latest
-            target: windows_i386 # Cross-compiling x64 -> x86 on Windows natively works out of the box
-            name: odinup-windows-i386
             exe: odinup.exe
             ext: zip
 
@@ -60,8 +54,8 @@ jobs:
       - name: Install Odin Compiler
         uses: laytan/setup-odin@v2
         with:
-          release: "latest"  # ← Fixed: "dev" tag does not exist on odin-lang/Odin releases
-          token: ${{ secrets.GITHUB_TOKEN }} # Fixes the "Invalid access token" GitHub API rate-limit warning
+          release: "latest"
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Compile OdinUP
         run: odin build . -target:${{ matrix.target }} -out:${{ matrix.exe }} -o:speed
@@ -69,7 +63,9 @@ jobs:
       - name: Package Archive (Tar.gz)
         if: matrix.ext == 'tar.gz'
         shell: bash
-        run: tar -czf ${{ matrix.name }}.tar.gz ${{ matrix.exe }}
+        run: |
+          chmod +x ${{ matrix.exe }}
+          tar -czf ${{ matrix.name }}.tar.gz ${{ matrix.exe }}
 
       - name: Package Archive (Zip)
         if: matrix.ext == 'zip'
@@ -87,7 +83,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Required to create the GitHub release
+      contents: write
     steps:
       - name: Download all Compiled Archives
         uses: actions/download-artifact@v4
