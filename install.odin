@@ -154,9 +154,17 @@ ols_platform_string :: proc() -> string {
 	when ODIN_OS == .Windows {
 		return "x86_64-pc-windows-msvc"
 	} else when ODIN_OS == .Darwin {
-		when ODIN_ARCH == .arm64 do return "arm64-darwin" else do return "x86_64-darwin"
+		when ODIN_ARCH == .arm64 {
+			return "arm64-darwin"
+		} else {
+			return "x86_64-darwin"
+		}
 	} else {
-		when ODIN_ARCH == .arm64 do return "arm64-unknown-linux-gnu" else do return "x86_64-unknown-linux-gnu"
+		when ODIN_ARCH == .arm64 {
+			return "arm64-unknown-linux-gnu"
+		} else {
+			return "x86_64-unknown-linux-gnu"
+		}
 	}
 }
 

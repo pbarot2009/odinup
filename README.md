@@ -13,7 +13,7 @@ Kindly follow below steps:
 Open your terminal and run:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/prathmeshcodes-ai/odinup/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/pbarot2009/odinup/main/install.sh | bash
 ```
 
 After installation, restart your terminal or run:
@@ -33,7 +33,7 @@ odinup help
 Open PowerShell and run:
 
 ```powershell
-irm https://raw.githubusercontent.com/prathmeshcodes-ai/odinup/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/pbarot2009/odinup/main/install.ps1 | iex
 ```
 
 Then open a new terminal and verify:
